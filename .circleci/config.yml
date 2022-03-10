@@ -25,6 +25,7 @@ jobs:
       - run:
           command: |
             echo "This is an integration step"
+            allow_failure: true
             exit 1
 
   prod:
