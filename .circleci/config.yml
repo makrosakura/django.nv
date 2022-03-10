@@ -25,7 +25,6 @@ jobs:
       - run:
           command: |
             echo "This is an integration step"
-            allow_failure: true
             exit 1
 
   prod:
@@ -34,6 +33,16 @@ jobs:
     steps:
       - checkout
       - run: echo "This is a deploy step"
+ 
+   new:
+    docker:
+      - image: python:3.6
+    steps:
+      - checkout
+      - run: echo "hello" > hello.txt
+      - store_artifacts: 
+    path: hello.txt
+    destination: hello
 
 workflows:
   version: 2
@@ -43,3 +52,4 @@ workflows:
       - test
       - integration
       - prod
+      - new
